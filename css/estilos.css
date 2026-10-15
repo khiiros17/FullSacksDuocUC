@@ -1,0 +1,112 @@
+/* ESTILOS GENERALES */
+body {
+    margin: 0;
+    /* quita el borde blanco que el navegador pone por defecto */
+    font-family: Arial, sans-serif;
+    /* tipo de letra */
+    background-color: #151515;
+    /* color de fondo (crema, como papel de cómic) */
+}
+
+/* ENCABEZADO */
+header {
+    background-color: #373737;
+    /* rojo cómic */
+    color: rgb(210, 95, 33);
+    /* color del texto */
+    padding: 20px;
+    /* espacio por dentro */
+    text-align: center;
+    /* centra el contenido */
+
+
+}
+
+/* LINKS DEL MENU */
+nav a {
+    color: #ededea;
+    /* blanco */
+    text-decoration: none;
+    /* quita el subrayado */
+    margin: 0 20px;
+    /* separa los links entre sí */
+    font-weight: bold;
+    /* negrita */
+}
+
+/* letra comics */
+main section h1 {
+    padding: 30px;
+    color: rgb(210, 95, 33);
+    font-size: 100px;
+    margin-top: 40px;
+    /* arriba */
+    margin-bottom: 55px;
+    /* abajo */
+    margin-left: -40px;
+    /* izquierda */
+    margin-right: -40px;
+    /* derecha */
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 200px;
+    line-height: 0.7;
+    transform: scaleY(2);
+    pointer-events: none;
+}
+
+/*links de las secciones debajo de comics*/
+main section a {
+    color: #ededea;
+    text-decoration: none;
+    font-size: 30px;
+    margin-top: 10px;
+    /* tamaño de letra */
+    margin: 0 20px;
+    padding: 10px;
+}
+
+main {
+    padding: 20px;
+    /* espacio por dentro */
+    margin: 20px;
+    /* espacio por fuera */
+    color: #ededea;
+    /* color del texto */
+    text-decoration: none;
+    /* quita decoraciones */
+}
+
+
+
+
+/* PIE DE PÁGINA */
+footer {
+    background-color: #373737;
+    /* color de fondo */
+    color: white;
+    text-align: center;
+    /* alinea el texto */
+    padding: 15px;
+}
+
+section {
+    padding: 20px;
+    margin: 20px;
+    background-color: #151515;
+}
+
+
+.logo {
+    display: flex;
+    /* ⬅️ esta es la clave */
+    align-items: center;
+    /* centra el título a la altura del logo */
+    gap: 10px;
+    /* espacio entre los dos */
+    justify-content: center;
+}
+
+.logo img {
+    height: 70px;
+    /* tamaño del logo */
+}
