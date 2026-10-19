@@ -52,7 +52,7 @@ function mostrarProductos() {
         <img src="${producto.imagen}" alt="${producto.nombre}">
         <h3>${producto.nombre}</h3>
         <p class="precio">$${producto.precio.toLocaleString("es-CL")}</p>
-        <button class="boton-anadir">Añadir al carrito</button>
+        <button class="boton-anadir" onclick="agregarAlCarrito(${producto.id})">Añadir al carrito</button>
       </article>
     `;
     });
