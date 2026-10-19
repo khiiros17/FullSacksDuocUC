@@ -6,7 +6,8 @@ const productos = [
         nombre: "Spider-Man #1",
         precio: 12990,
         categoria: "Superhéroes",
-        imagen: "img/spiderman.jpg"
+        imagen: "img/spiderman.jpg",
+        descripcion: "El primer número de la serie de Spider-Man, donde Peter Parker se enfrenta a su primer gran desafío como superhéroe."
     },
     {
         id: 2,
@@ -14,7 +15,8 @@ const productos = [
         nombre: "Batman: Año Uno",
         precio: 15990,
         categoria: "Superhéroes",
-        imagen: "img/batman.jpg"
+        imagen: "img/batman.jpg",
+        descripcion: "Una historia que narra los primeros días de Bruce Wayne como Batman, enfrentándose a la corrupción en Gotham City y estableciendo su legado como el Caballero Oscuro."
     },
     {
         id: 3,
@@ -22,7 +24,8 @@ const productos = [
         nombre: "One Piece Vol. 1",
         precio: 8990,
         categoria: "Manga",
-        imagen: "img/onepiece.jpg"
+        imagen: "img/onepiece.jpg",
+        descripcion: "El primer volumen de la serie de One Piece, donde Monkey D. Luffy y su tripulación comienzan su aventura en el Grand Line."
     },
     {
         id: 4,
@@ -30,7 +33,8 @@ const productos = [
         nombre: "Naruto Vol. 1",
         precio: 8490,
         categoria: "Manga",
-        imagen: "img/naruto.jpg"
+        imagen: "img/naruto.jpg",
+        descripcion: "El primer volumen de la serie de Naruto, donde Naruto Uzumaki comienza su viaje como shinobi."
     }
 ];
 
@@ -48,15 +52,67 @@ function mostrarProductos() {
 
         // 3 agrega una tarjeta dentro de la caja
         contenedor.innerHTML += `
-      <article class="tarjeta-producto">
-        <img src="${producto.imagen}" alt="${producto.nombre}">
-        <h3>${producto.nombre}</h3>
-        <p class="precio">$${producto.precio.toLocaleString("es-CL")}</p>
-        <button class="boton-anadir" onclick="agregarAlCarrito(${producto.id})">Añadir al carrito</button>
-      </article>
+    <article class="tarjeta-producto">
+    <a href="detalle-producto.html?id=${producto.id}">
+      <img src="${producto.imagen}" alt="${producto.nombre}">
+    </a>
+    <h3>
+      <a href="detalle-producto.html?id=${producto.id}">${producto.nombre}</a>
+    </h3>
+    <p class="precio">$${producto.precio.toLocaleString("es-CL")}</p>
+    <button class="boton-anadir" onclick="agregarAlCarrito(${producto.id})">Añadir al carrito</button>
+  </article>
     `;
     });
 }
 
+// ===== DIBUJAR EL DETALLE DE UN PRODUCTO =====
+function mostrarDetalle() {
+    const contenedor = document.getElementById("detalle-producto");
+    if (!contenedor) return;   // si no estamos en detalle-producto.html, no hace nada
+
+    // 1. Lee el "papelito" de la URL (?id=3) y saca el número
+    const parametros = new URLSearchParams(window.location.search);
+    const id = Number(parametros.get("id"));
+
+    // 2. Busca ese producto en la lista
+    const producto = productos.find(function (p) {
+        return p.id === id;
+    });
+
+    // 3. Si no existe, muestra un mensaje
+    if (!producto) {
+        contenedor.innerHTML = `
+      <p>Producto no encontrado. <a href="productos.html">Volver a productos</a></p>
+    `;
+        return;
+    }
+
+    // 4. Cambia el título de la pestaña del navegador
+    document.title = "ComMangaVerse - " + producto.nombre;
+
+    // 5. Dibuja la ruta: Inicio > Categoría > Producto
+    document.getElementById("ruta-producto").innerHTML = `
+    <a href="index.html">Inicio</a> &gt;
+    <a href="productos.html">${producto.categoria}</a> &gt;
+    <span>${producto.nombre}</span>
+  `;
+
+    // 6. Dibuja el detalle
+    contenedor.innerHTML = `
+    <img src="${producto.imagen}" alt="${producto.nombre}">
+
+    <div class="info-producto">
+      <span class="etiqueta-categoria">${producto.categoria}</span>
+      <h2>${producto.nombre}</h2>
+      <p class="codigo">Código: ${producto.codigo}</p>
+      <p class="precio">$${producto.precio.toLocaleString("es-CL")}</p>
+      <p>${producto.descripcion}</p>
+      <button class="boton-anadir" onclick="agregarAlCarrito(${producto.id})">Añadir al carrito</button>
+    </div>
+  `;
+}
+
 //  ejecuta la función apenas carga la página
 mostrarProductos();
+mostrarDetalle();

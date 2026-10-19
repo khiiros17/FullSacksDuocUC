@@ -275,3 +275,66 @@ section {
     border-radius: 6px;
     cursor: pointer;
 }
+
+
+
+/* ===== DETALLE DEL PRODUCTO ===== */
+.ruta {
+    margin-bottom: 20px;
+    color: #aaa;
+}
+
+.ruta a {
+    color: #d35f20;
+}
+
+.detalle-producto {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.detalle-producto img {
+    width: 350px;
+    max-width: 100%;
+    /* nunca más ancha que la pantalla */
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 3px solid #d35f20;
+}
+
+.info-producto {
+    flex: 1;
+    /* ocupa todo el espacio que sobra al lado de la imagen */
+}
+
+.info-producto h2 {
+    font-size: 36px;
+    margin: 10px 0;
+}
+
+.etiqueta-categoria {
+    background-color: #333;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.codigo {
+    color: #aaa;
+}
+
+.info-producto .boton-anadir {
+    width: auto;
+    /* que el botón no ocupe todo el ancho */
+    padding: 12px 30px;
+    font-size: 16px;
+}
+
+/* En pantallas chicas (celular): imagen arriba y texto abajo */
+@media (max-width: 768px) {
+    .detalle-producto {
+        flex-direction: column;
+    }
+}
