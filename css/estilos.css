@@ -8,6 +8,11 @@ body {
     /* color de fondo (crema, como papel de cómic) */
 }
 
+img {
+    max-width: 100%;
+    /* ninguna imagen es más ancha que su contenedor */
+}
+
 /* ENCABEZADO */
 header {
     background-color: #373737;
@@ -48,7 +53,7 @@ main section h1 {
     margin-right: -40px;
     /* derecha */
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 200px;
+    font-size: 100px;
     line-height: 0.7;
     transform: scaleY(2);
     pointer-events: none;
@@ -637,5 +642,85 @@ section {
         display: block;
         overflow-x: auto;
         /* la tabla se puede deslizar de lado */
+    }
+}
+
+
+/* ===== BANNER DEL HOME ===== */
+.banner {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    background-color: #1f1f1f;
+    border-radius: 12px;
+    padding: 30px;
+    margin: 30px 0;
+}
+
+.banner-texto {
+    flex: 1;
+}
+
+.banner img {
+    width: 45%;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+/* ============================================================
+   RESPONSIVE: pantallas de celular y tablet chica
+   ============================================================ */
+@media (max-width: 768px) {
+
+    /* Menú: los links bajan a otra línea si no caben */
+    header nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .acciones-usuario {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* Menos espacio a los lados */
+    main {
+        padding: 15px;
+    }
+
+    /* Título gigante: más chico en celular */
+    /* ⚠️ Cambia este selector por el que usaste para "COMICS" */
+    main section h2 {
+        font-size: 70px;
+    }
+
+    /* Banner: imagen debajo del texto */
+    .banner {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .banner img {
+        width: 100%;
+    }
+
+    /* Carrito: la tabla se desliza de lado */
+    .tabla-carrito {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .resumen-carrito {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    /* Admin: título y botón uno debajo del otro */
+    .admin-encabezado {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
     }
 }
