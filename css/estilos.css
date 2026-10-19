@@ -615,6 +615,12 @@ section {
     margin-right: 6px;
 }
 
+.aviso-stock {
+    color: #ffd60a;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
 /* En celular: el menú pasa arriba */
 @media (max-width: 768px) {
     .admin-layout {
