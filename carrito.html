@@ -38,8 +38,34 @@
 
     <main> <!-- contenido principal -->
         <section>
-            <h1>CARRITO</h1>
-            <p>aca iran los productos en el carrito.</p>
+            <h2>Carrito de compras</h2>
+
+            <!-- Mensaje que se muestra si el carrito está vacío -->
+            <p id="carrito-vacio">
+                Tu carrito está vacío. <a href="productos.html">Ver productos</a>
+            </p>
+
+            <!-- Tabla de productos del carrito -->
+            <table class="tabla-carrito">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Subtotal</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="lista-carrito">
+                    <!-- JavaScript llena estas filas -->
+                </tbody>
+            </table>
+
+            <!-- Total y botón para vaciar -->
+            <div class="resumen-carrito">
+                <p class="total-carrito">Total: <span id="total-carrito">$0</span></p>
+                <button class="boton-vaciar" onclick="vaciarCarrito()">Vaciar carrito</button>
+            </div>
         </section>
     </main>
 
