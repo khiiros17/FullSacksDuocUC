@@ -266,8 +266,198 @@ function iniciarFormularioProducto() {
     });
 }
 
+// ============================================================
+//  USUARIOS
+// ============================================================
+
+// Leer y guardar la lista de usuarios en localStorage
+function obtenerUsuarios() {
+    return JSON.parse(localStorage.getItem("usuarios")) || [];
+}
+
+function guardarUsuarios(lista) {
+    localStorage.setItem("usuarios", JSON.stringify(lista));
+}
+
+
+// ===== USUARIOS: dibujar la tabla =====
+function mostrarTablaUsuarios() {
+    const tabla = document.getElementById("tabla-usuarios");
+    if (!tabla) return;
+
+    const usuarios = obtenerUsuarios();
+    const mensajeVacio = document.getElementById("sin-usuarios");
+
+    tabla.innerHTML = "";
+
+    usuarios.forEach(function (usuario) {
+        tabla.innerHTML += `
+      <tr>
+        <td>${usuario.run}</td>
+        <td>${usuario.nombre} ${usuario.apellidos}</td>
+        <td>${usuario.correo}</td>
+        <td><span class="etiqueta-categoria">${usuario.tipo}</span></td>
+        <td>${usuario.comuna}</td>
+        <td>
+          <a href="usuario-form.html?run=${usuario.run}" class="boton-editar">Editar</a>
+          <button class="boton-quitar" onclick="eliminarUsuario('${usuario.run}')">Eliminar</button>
+        </td>
+      </tr>
+    `;
+    });
+
+    // Muestra el mensaje solo si no hay usuarios
+    if (usuarios.length === 0) {
+        mensajeVacio.style.display = "block";
+    } else {
+        mensajeVacio.style.display = "none";
+    }
+}
+
+
+// ===== USUARIOS: eliminar =====
+function eliminarUsuario(run) {
+    const confirmado = confirm("¿Seguro que quieres eliminar este usuario?");
+    if (!confirmado) return;
+
+    const usuarios = obtenerUsuarios().filter(function (usuario) {
+        return usuario.run !== run;
+    });
+
+    guardarUsuarios(usuarios);
+    mostrarTablaUsuarios();
+}
+
+
+// ===== FORMULARIO DE USUARIO (crear y editar) =====
+function iniciarFormularioUsuario() {
+    const formulario = document.getElementById("form-usuario");
+    if (!formulario) return;
+
+    const run = document.getElementById("run");
+    const nombre = document.getElementById("nombre");
+    const apellidos = document.getElementById("apellidos");
+    const correo = document.getElementById("correo");
+    const fecha = document.getElementById("fecha");
+    const tipo = document.getElementById("tipo");
+    const region = document.getElementById("region");
+    const comuna = document.getElementById("comuna");
+    const direccion = document.getElementById("direccion");
+
+    // Llena las regiones (función de validaciones.js)
+    cargarRegiones(region, comuna);
+
+    // ----- ¿Estamos EDITANDO? Lee el RUN de la URL -----
+    const usuarios = obtenerUsuarios();
+    const parametros = new URLSearchParams(window.location.search);
+    const runEditar = parametros.get("run");
+
+    const usuarioEditar = usuarios.find(function (usuario) {
+        return usuario.run === runEditar;
+    });
+
+    if (usuarioEditar) {
+        document.getElementById("titulo-formulario").textContent = "Editar usuario";
+        document.getElementById("boton-guardar").textContent = "Guardar cambios";
+
+        run.value = usuarioEditar.run;
+        run.readOnly = true;   // el RUN no se puede cambiar
+        nombre.value = usuarioEditar.nombre;
+        apellidos.value = usuarioEditar.apellidos;
+        correo.value = usuarioEditar.correo;
+        fecha.value = usuarioEditar.fechaNacimiento || "";
+        tipo.value = usuarioEditar.tipo;
+        direccion.value = usuarioEditar.direccion;
+
+        // Selecciona la región y "avisa" que cambió, para que se carguen sus comunas
+        region.value = usuarioEditar.region;
+        region.dispatchEvent(new Event("change"));
+        comuna.value = usuarioEditar.comuna;
+    }
+
+    // ----- Funciones de revisión -----
+    function revisarRun() {
+        let mensaje = validarRun(run.value.trim());
+
+        // Al CREAR, revisa que el RUN no esté repetido
+        if (mensaje === "" && !usuarioEditar) {
+            const existe = usuarios.find(function (usuario) {
+                return usuario.run === run.value.trim().toUpperCase();
+            });
+            if (existe) {
+                mensaje = "Ya existe un usuario con ese RUN.";
+            }
+        }
+        return mostrarError(run, mensaje);
+    }
+    function revisarNombre() { return mostrarError(nombre, validarTexto(nombre.value.trim(), "Nombre", 50)); }
+    function revisarApellidos() { return mostrarError(apellidos, validarTexto(apellidos.value.trim(), "Apellidos", 100)); }
+    function revisarCorreo() { return mostrarError(correo, validarCorreo(correo.value.trim(), true)); }
+    function revisarFecha() { return mostrarError(fecha, validarFecha(fecha.value)); }
+    function revisarTipo() { return mostrarError(tipo, tipo.value === "" ? "Selecciona el tipo de usuario." : ""); }
+    function revisarRegion() { return mostrarError(region, validarSelect(region.value, "región")); }
+    function revisarComuna() { return mostrarError(comuna, validarSelect(comuna.value, "comuna")); }
+    function revisarDireccion() { return mostrarError(direccion, validarTexto(direccion.value.trim(), "Dirección", 300)); }
+
+    // ----- En tiempo real -----
+    run.addEventListener("input", revisarRun);
+    nombre.addEventListener("input", revisarNombre);
+    apellidos.addEventListener("input", revisarApellidos);
+    correo.addEventListener("input", revisarCorreo);
+    fecha.addEventListener("change", revisarFecha);
+    tipo.addEventListener("change", revisarTipo);
+    region.addEventListener("change", revisarRegion);
+    comuna.addEventListener("change", revisarComuna);
+    direccion.addEventListener("input", revisarDireccion);
+
+    // ----- Al enviar -----
+    formulario.addEventListener("submit", function (evento) {
+        evento.preventDefault();
+
+        const resultados = [
+            revisarRun(),
+            revisarNombre(),
+            revisarApellidos(),
+            revisarCorreo(),
+            revisarFecha(),
+            revisarTipo(),
+            revisarRegion(),
+            revisarComuna(),
+            revisarDireccion()
+        ];
+
+        if (resultados.includes(false)) {
+            return;
+        }
+
+        const datos = {
+            run: run.value.trim().toUpperCase(),
+            nombre: nombre.value.trim(),
+            apellidos: apellidos.value.trim(),
+            correo: correo.value.trim(),
+            fechaNacimiento: fecha.value,
+            tipo: tipo.value,
+            region: region.value,
+            comuna: comuna.value,
+            direccion: direccion.value.trim()
+        };
+
+        if (usuarioEditar) {
+            Object.assign(usuarioEditar, datos);   // EDITAR
+        } else {
+            usuarios.push(datos);                  // CREAR
+        }
+
+        guardarUsuarios(usuarios);
+        alert("¡Usuario guardado correctamente!");
+        window.location.href = "usuarios.html";
+    });
+}
+
 
 // ===== AL CARGAR LA PÁGINA =====
 mostrarResumen();
 mostrarTablaProductos();
 iniciarFormularioProducto();
+mostrarTablaUsuarios();
+iniciarFormularioUsuario();

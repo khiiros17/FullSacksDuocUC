@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ComMangaVerse - Formulario de usuario</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+
+<body>
+
+    <div class="admin-layout">
+
+        <!-- ===== MENÚ LATERAL ===== -->
+        <aside class="admin-menu">
+            <div class="admin-logo">
+                <img src="../img/logo.png" alt="Logo de ComMangaVerse">
+                <span>ComMangaVerse<br><small>Panel admin</small></span>
+            </div>
+            <nav>
+                <a href="index.html"> Inicio</a>
+                <a href="productos.html"> Productos</a>
+                <a href="usuarios.html" class="activo"> Usuarios</a>
+                <a href="../index.html">↩ Volver a la tienda</a>
+            </nav>
+        </aside>
+
+        <!-- ===== CONTENIDO ===== -->
+        <main class="admin-contenido">
+            <a href="usuarios.html">← Volver al listado</a>
+            <h2 id="titulo-formulario">Nuevo usuario</h2>
+
+            <section class="contenedor-formulario">
+                <form id="form-usuario" class="formulario" novalidate>
+
+                    <label for="run">RUN</label>
+                    <input type="text" id="run" placeholder="Sin puntos ni guion. Ej: 123456785">
+                    <small class="error" id="error-run"></small>
+
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre">
+                    <small class="error" id="error-nombre"></small>
+
+                    <label for="apellidos">Apellidos</label>
+                    <input type="text" id="apellidos">
+                    <small class="error" id="error-apellidos"></small>
+
+                    <label for="correo">Correo electrónico</label>
+                    <input type="email" id="correo" placeholder="ejemplo@duoc.cl">
+                    <small class="error" id="error-correo"></small>
+
+                    <label for="fecha">Fecha de nacimiento (opcional)</label>
+                    <input type="date" id="fecha">
+                    <small class="error" id="error-fecha"></small>
+
+                    <!-- Solo en el admin -->
+                    <label for="tipo">Tipo de usuario</label>
+                    <select id="tipo">
+                        <option value="">Selecciona un tipo</option>
+                        <option value="Administrador">Administrador</option>
+                        <option value="Vendedor">Vendedor</option>
+                        <option value="Cliente">Cliente</option>
+                    </select>
+                    <small class="error" id="error-tipo"></small>
+
+                    <label for="region">Región</label>
+                    <select id="region">
+                        <option value="">Selecciona una región</option>
+                    </select>
+                    <small class="error" id="error-region"></small>
+
+                    <label for="comuna">Comuna</label>
+                    <select id="comuna" disabled>
+                        <option value="">Primero selecciona una región</option>
+                    </select>
+                    <small class="error" id="error-comuna"></small>
+
+                    <label for="direccion">Dirección</label>
+                    <input type="text" id="direccion">
+                    <small class="error" id="error-direccion"></small>
+
+                    <button type="submit" class="boton-anadir" id="boton-guardar">Crear usuario</button>
+                </form>
+            </section>
+        </main>
+
+    </div>
+
+    <script src="../js/productos.js"></script>
+    <script src="../js/regiones.js"></script>
+    <script src="../js/validaciones.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
+
+</html>

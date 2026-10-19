@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ComMangaVerse - Admin Usuarios</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+
+<body>
+
+    <div class="admin-layout">
+
+        <!-- ===== MENÚ LATERAL ===== -->
+        <aside class="admin-menu">
+            <div class="admin-logo">
+                <img src="../img/logo.png" alt="Logo de ComMangaVerse">
+                <span>ComMangaVerse<br><small>Panel admin</small></span>
+            </div>
+            <nav>
+                <a href="index.html"> Inicio</a>
+                <a href="productos.html"> Productos</a>
+                <a href="usuarios.html" class="activo"> Usuarios</a>
+                <a href="../index.html">↩ Volver a la tienda</a>
+            </nav>
+        </aside>
+
+        <!-- ===== CONTENIDO ===== -->
+        <main class="admin-contenido">
+            <div class="admin-encabezado">
+                <h2>Usuarios</h2>
+                <a href="usuario-form.html" class="boton-sesion">+ Nuevo usuario</a>
+            </div>
+
+            <section>
+                <p id="sin-usuarios">Todavía no hay usuarios registrados.</p>
+
+                <table class="tabla-carrito tabla-admin">
+                    <thead>
+                        <tr>
+                            <th>RUN</th>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Tipo</th>
+                            <th>Comuna</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-usuarios">
+                        <!-- JavaScript llena las filas -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
+
+    </div>
+
+    <script src="../js/productos.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
+
+</html>
