@@ -11,26 +11,34 @@
 <body> <!-- esto es el cuerpo de la pagina donde puedes agregar todo el contenido -->
 
     <header> <!-- esto es el encabezado para la tienda La comics -->
+        <!-- logo + nombre de la tienda -->
         <div class="logo">
-            <img src="C:\Users\Javier\Desktop\mi_tienda\img\logo.png" alt="Logo de ComMangaVerse">
-            <h1>ComMangaVerse</h1> <!-- Titulo -->
+            <img src="img/logo.png" alt="Logo de ComMangaVerse">
+            <h1>ComMangaVerse</h1>
         </div>
-        <nav> <!-- es el menu para la navegacion de la tienda en general -->
 
-            <!-- links de pestañas -->
+        <!-- menú principal de navegación -->
+        <nav>
             <a href="index.html">Inicio</a>
-            <a href="comics.html">Comics</a>
-            <a href="Manga.html">Manga</a>
+            <a href="productos.html">Productos</a>
+            <a href="nosotros.html">Nosotros</a>
+            <a href="blogs.html">Blogs</a>
             <a href="contacto.html">Contacto</a>
-            <!-- links de pestañas -->
         </nav>
+
+        <!-- sesión y carrito -->
+        <div class="acciones-usuario">
+            <a href="login.html" class="boton boton-sesion">Iniciar sesión</a>
+            <a href="registro.html" class="boton boton-sesion">Registrarse</a>
+            <a href="carrito.html" class="boton carrito">
+                Carrito (<span id="contador-carrito">0</span>)
+            </a>
+        </div>
     </header>
 
     <main> <!-- contenido principal -->
         <section>
             <h1>COMICS</h1>
-            <a href="comics.html">Comics</a>
-            <a href="Manga.html">Manga</a>
             <p>patatas!.</p>
         </section>
     </main>

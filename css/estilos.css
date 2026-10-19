@@ -110,3 +110,39 @@ section {
     height: 70px;
     /* tamaño del logo */
 }
+
+
+/*  SESIÓN Y CARRITO*/
+.acciones-usuario {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* espacio entre los links */
+    font-size: 14px;
+}
+
+/* La forma, igual para todos */
+.boton {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+/* Solo los colores */
+.boton-sesion {
+    background-color: #d35f20;
+    color: white;
+}
+
+.boton-sesion:hover {
+    background-color: #b14c1a;
+}
+
+.carrito {
+    background-color: #048b16;
+    color: rgb(238, 238, 238);
+}
+
+.carrito:hover {
+    background-color: #036a12;
+}
