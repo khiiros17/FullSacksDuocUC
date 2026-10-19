@@ -37,9 +37,28 @@
     </header>
 
     <main> <!-- contenido principal -->
-        <section>
-            <h1>LOGIN</h1>
-            <p>aca iran los datos de inicio de sesión.</p>
+        <section class="contenedor-formulario">
+            <h2>Iniciar sesión</h2>
+
+            <form id="form-login" class="formulario" novalidate>
+
+                <!-- Campo: correo -->
+                <label for="correo">Correo electrónico</label>
+                <input type="email" id="correo" placeholder="ejemplo@duoc.cl">
+                <small class="error" id="error-correo"></small>
+
+                <!-- Campo: contraseña -->
+                <label for="contrasena">Contraseña</label>
+                <input type="password" id="contrasena" placeholder="Entre 4 y 10 caracteres">
+                <small class="error" id="error-contrasena"></small>
+
+                <button type="submit" class="boton-anadir">Ingresar</button>
+
+                <!-- Mensaje de éxito -->
+                <p class="mensaje-exito" id="mensaje-exito"></p>
+            </form>
+
+            <p>¿No tienes cuenta? <a href="registro.html">Regístrate aquí</a></p>
         </section>
     </main>
 
@@ -49,6 +68,7 @@
 
     <script src="js/productos.js"></script> <!-- script para poder agregar los productos a la pagina -->
     <script src="js/carrito.js"></script> <!-- script para poder gestionar el carrito de compras -->
+    <script src="js/validaciones.js"></script> <!-- script para poder validar los datos del formulario de login -->
 
 </body>
 
