@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ComMangaVerse - Administrador</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+
+<body>
+
+    <div class="admin-layout">
+
+        <!-- ===== MENÚ LATERAL ===== -->
+        <aside class="admin-menu">
+            <div class="admin-logo">
+                <img src="../img/logo.png" alt="Logo de ComMangaVerse">
+                <span>ComMangaVerse<br><small>Panel admin</small></span>
+            </div>
+            <nav>
+                <a href="index.html" class="activo"> Inicio</a>
+                <a href="productos.html"> Productos</a>
+                <a href="usuarios.html"> Usuarios</a>
+                <a href="../index.html">↩ Volver a la tienda</a>
+            </nav>
+        </aside>
+
+        <!-- ===== CONTENIDO ===== -->
+        <main class="admin-contenido">
+            <h2>¡Hola Administrador!</h2>
+            <p>Desde aquí puedes gestionar los productos y usuarios de la tienda.</p>
+
+            <section class="admin-resumen">
+                <article class="caja-info">
+                    <h3> Productos</h3>
+                    <p class="numero-resumen" id="total-productos">0</p>
+                    <a href="productos.html">Ver productos →</a>
+                </article>
+                <article class="caja-info">
+                    <h3> Usuarios</h3>
+                    <p class="numero-resumen" id="total-usuarios">0</p>
+                    <a href="usuarios.html">Ver usuarios →</a>
+                </article>
+                <article class="caja-info">
+                    <h3> Stock crítico</h3>
+                    <p class="numero-resumen" id="total-criticos">0</p>
+                    <a href="productos.html">Revisar →</a>
+                </article>
+            </section>
+        </main>
+
+    </div>
+
+    <script src="../js/productos.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
+
+</html>

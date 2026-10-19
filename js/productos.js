@@ -1,10 +1,12 @@
 // listas de los productos que se van a mostrar en la pagina de productos.html
-const productos = [
+const productosIniciales = [
     {
         id: 1,
         codigo: "COM-001",
         nombre: "Spider-Man #1",
         precio: 12990,
+        stock: 15,
+        stockCritico: 5,
         categoria: "Superhéroes",
         imagen: "img/spiderman.jpg",
         descripcion: "El primer número de la serie de Spider-Man, donde Peter Parker se enfrenta a su primer gran desafío como superhéroe."
@@ -14,6 +16,8 @@ const productos = [
         codigo: "COM-002",
         nombre: "Batman: Año Uno",
         precio: 15990,
+        stock: 20,
+        stockCritico: 5,
         categoria: "Superhéroes",
         imagen: "img/batman.jpg",
         descripcion: "Una historia que narra los primeros días de Bruce Wayne como Batman, enfrentándose a la corrupción en Gotham City y estableciendo su legado como el Caballero Oscuro."
@@ -23,6 +27,8 @@ const productos = [
         codigo: "MAN-001",
         nombre: "One Piece Vol. 1",
         precio: 8990,
+        stock: 30,
+        stockCritico: 2,
         categoria: "Manga",
         imagen: "img/onepiece.jpg",
         descripcion: "El primer volumen de la serie de One Piece, donde Monkey D. Luffy y su tripulación comienzan su aventura en el Grand Line."
@@ -32,11 +38,27 @@ const productos = [
         codigo: "MAN-002",
         nombre: "Naruto Vol. 1",
         precio: 8490,
+        stock: 50,
+        stockCritico: 3,
         categoria: "Manga",
         imagen: "img/naruto.jpg",
         descripcion: "El primer volumen de la serie de Naruto, donde Naruto Uzumaki comienza su viaje como shinobi."
     }
 ];
+
+
+// ===== CARGAR PRODUCTOS =====
+// Si el administrador ya guardó cambios, usa esos.
+// Si no, usa la lista inicial.
+const productosGuardados = localStorage.getItem("productos");
+const productos = productosGuardados ? JSON.parse(productosGuardados) : productosIniciales;
+
+// Guarda la lista de productos en localStorage
+function guardarProductos() {
+    localStorage.setItem("productos", JSON.stringify(productos));
+}
+
+
 
 //  dibujar las tarjetas funcion para mostrar los productos
 function mostrarProductos() {

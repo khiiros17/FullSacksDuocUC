@@ -496,3 +496,140 @@ section {
     color: #d35f20;
     margin-top: 30px;
 }
+
+
+
+
+
+
+
+
+
+
+/* ===== PANEL ADMINISTRADOR ===== */
+.admin-layout {
+    display: flex;
+    min-height: 100vh;
+    /* ocupa todo el alto de la pantalla */
+}
+
+/* Menú lateral */
+.admin-menu {
+    width: 240px;
+    background-color: #1f1f1f;
+    border-right: 3px solid #d35f20;
+    padding: 20px;
+    flex-shrink: 0;
+    /* el menú nunca se achica */
+}
+
+.admin-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    font-weight: bold;
+    color: #d35f20;
+}
+
+.admin-logo img {
+    height: 45px;
+}
+
+.admin-logo small {
+    color: #aaa;
+    font-weight: normal;
+}
+
+.admin-menu nav {
+    display: flex;
+    flex-direction: column;
+    /* links uno debajo del otro */
+    gap: 5px;
+}
+
+.admin-menu nav a {
+    color: white;
+    padding: 10px 12px;
+    border-radius: 6px;
+    margin: 0;
+}
+
+.admin-menu nav a:hover {
+    background-color: #333;
+    color: white;
+}
+
+.admin-menu nav a.activo {
+    background-color: #d35f20;
+    color: white;
+}
+
+/* Contenido a la derecha */
+.admin-contenido {
+    flex: 1;
+    padding: 30px;
+}
+
+.admin-encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-resumen {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.numero-resumen {
+    font-size: 40px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* Tabla de admin */
+.miniatura {
+    width: 40px;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.alerta-stock {
+    background-color: #e23636;
+    color: white;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-left: 6px;
+}
+
+.boton-editar {
+    color: #ffd60a;
+    border: 1px solid #ffd60a;
+    padding: 6px 10px;
+    border-radius: 6px;
+    margin-right: 6px;
+}
+
+/* En celular: el menú pasa arriba */
+@media (max-width: 768px) {
+    .admin-layout {
+        flex-direction: column;
+    }
+
+    .admin-menu {
+        width: auto;
+        border-right: none;
+        border-bottom: 3px solid #d35f20;
+    }
+
+    .tabla-admin {
+        display: block;
+        overflow-x: auto;
+        /* la tabla se puede deslizar de lado */
+    }
+}

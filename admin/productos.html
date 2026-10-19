@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ComMangaVerse - Admin Productos</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+
+<body>
+
+    <div class="admin-layout">
+
+        <!-- ===== MENÚ LATERAL ===== -->
+        <aside class="admin-menu">
+            <div class="admin-logo">
+                <img src="../img/logo.png" alt="Logo de ComMangaVerse">
+                <span>ComMangaVerse<br><small>Panel admin</small></span>
+            </div>
+            <nav>
+                <a href="index.html"> Inicio</a>
+                <a href="productos.html" class="activo"> Productos</a>
+                <a href="usuarios.html"> Usuarios</a>
+                <a href="../index.html">↩ Volver a la tienda</a>
+            </nav>
+        </aside>
+
+        <!-- ===== CONTENIDO ===== -->
+        <main class="admin-contenido">
+            <div class="admin-encabezado">
+                <h2>Productos</h2>
+                <a href="producto-form.html" class="boton-sesion">+ Nuevo producto</a>
+            </div>
+
+            <section>
+                <table class="tabla-carrito tabla-admin">
+                    <thead>
+                        <tr>
+                            <th>Imagen</th>
+                            <th>Código</th>
+                            <th>Nombre</th>
+                            <th>Categoría</th>
+                            <th>Precio</th>
+                            <th>Stock</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-productos">
+                        <!-- JavaScript llena las filas -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
+
+    </div>
+
+    <script src="../js/productos.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
+
+</html>
